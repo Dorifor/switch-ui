@@ -59,8 +59,8 @@ header {
     margin: 2rem 5rem 1.5rem 5rem;
 
     .profiles {
-
         .user-profile {
+            display: block;
             aspect-ratio: 1 / 1;
             height: var(--s-circ-sz);
             background: rgba(0, 0, 0, 0.1);
@@ -69,8 +69,12 @@ header {
             overflow: hidden;
             transition: all .2s;
             box-shadow: 0 2px 2px 3px rgba(0, 0, 0, 0.1);
+            text-decoration: none;
 
+            &:focus,
+            &:focus-visible,
             &:hover {
+                outline: none;
                 border: 4px solid var(--blue);
             }
 
@@ -124,7 +128,10 @@ main {
                 margin-left: 8%;
             }
 
-            &:not(.empty):hover {
+            &:not(.empty):hover,
+            &:not(.empty):focus,
+            &:not(.empty):focus-visible {
+                outline: none;
                 cursor: pointer;
 
                 img {
@@ -174,7 +181,9 @@ main {
             box-shadow: 0 2px 2px 3px rgba(0, 0, 0, 0.1);
             transition: all .2s;
 
-            &:hover, &:focus, &:focus-visible {
+            &:hover,
+            &:focus,
+            &:focus-visible {
                 outline: none;
                 border: 4px solid var(--blue);
                 cursor: pointer;
