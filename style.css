@@ -42,12 +42,6 @@ body {
     letter-spacing: -.5px;
 }
 
-img[src=""] {
-    display: none;
-    border: none !important;
-    border-image-width: 0 !important;
-}
-
 svg {
     pointer-events: none;
 }
@@ -69,9 +63,21 @@ header {
         .user-profile {
             aspect-ratio: 1 / 1;
             height: var(--s-circ-sz);
-            background: var(--white);
+            background: rgba(0, 0, 0, 0.1);
+            border: 4px solid var(--grey);
             border-radius: 100%;
             overflow: hidden;
+            transition: all .2s;
+            box-shadow: 0 2px 2px 3px rgba(0, 0, 0, 0.1);
+
+            &:hover {
+                border: 4px solid var(--blue);
+            }
+
+            img {
+                width: 100%;
+                object-fit: fill;
+            }
         }
     }
 
@@ -102,7 +108,7 @@ main {
     .apps-slider {
         display: flex;
         gap: 1rem;
-        overflow: -moz-scrollbars-none;
+        overflow-x: -moz-scrollbars-none;
         overflow-x: scroll;
         scrollbar-width: none;
         scroll-behavior: smooth;
@@ -112,18 +118,42 @@ main {
         }
 
         .app-card {
-            aspect-ratio: 1 / 1;
-            width: var(--xl-card-sz);
-            height: var(--xl-card-sz);
-            background: var(--grey);
+            user-select: none;
 
             &:first-child {
                 margin-left: 8%;
             }
 
+            &:not(.empty):hover {
+                cursor: pointer;
+
+                img {
+                    border: 8px solid var(--blue);
+                }
+
+                span {
+                    opacity: 1;
+                }
+            }
+
+            span {
+                opacity: 0;
+                transition: all .2s;
+                color: var(--blue);
+                pointer-events: none;
+            }
+
             img {
-                width: 100%;
-                height: 100%;
+                pointer-events: none;
+                aspect-ratio: 1 / 1;
+                width: var(--xl-card-sz);
+                height: var(--xl-card-sz);
+                background: var(--grey);
+                border-radius: 2px;
+                border: 8px solid var(--background);
+                transition: all .2s;
+                position: relative;
+                outline: 0;
             }
         }
     }
@@ -136,11 +166,18 @@ main {
 
         button {
             background: var(--grey);
-            border: none;
             aspect-ratio: 1 / 1;
             width: var(--m-circ-sz);
             border-radius: 50%;
             color: var(--white);
+            border: 4px solid transparent;
+            box-shadow: 0 2px 2px 3px rgba(0, 0, 0, 0.1);
+            transition: all .2s;
+
+            &:hover {
+                border: 4px solid var(--blue);
+                cursor: pointer;
+            }
 
             &.news {
                 color: var(--orange);
